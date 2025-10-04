@@ -1,0 +1,4 @@
+/* style.css */
+body { font: 100%/1.5 system-ui; }
+h1   { border-bottom: 3px solid; }
+p    { background: #eee; padding: 12px; }
