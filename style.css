@@ -130,7 +130,7 @@ form button {
   background: white;
 }
 
-/* Images scale to the card width */
+/* Images scale to the card width (optional; your cards may be text-only) */
 .projects img {
   width: 100%;
   height: auto;
@@ -138,8 +138,7 @@ form button {
 }
 
 /* 4.3 Align inner pieces across cards using subgrid
-   - Use the parent rows (subgrid)
-   - Make each card span three row tracks: (h2 / img / p) */
+   We’ll use 3 shared row tracks: (title / summary / links) */
 .projects > article {
   grid-template-rows: subgrid;
   grid-row: span 3;
@@ -149,6 +148,31 @@ form button {
 .projects h2 {
   margin: 0;
   line-height: 1.2;
+}
+
+/* A compact paragraph for summaries */
+.projects .project-summary {
+  margin: .5rem 0 0 0; /* small top margin; no bottom margin so links sit tight */
+}
+
+/* A small "links row" styled as lightweight chips */
+.projects .project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
+.projects .project-links a {
+  text-decoration: none;
+  border: 1px solid var(--color-accent);
+  padding: .25rem .5rem;
+  border-radius: .4rem;
+  color: inherit;
+}
+
+.projects .project-links a:hover {
+  background: oklch(from var(--color-accent) 95% 5% h);
 }
 
 /* 4.4 Finishing touches: hierarchy & heading polish */
