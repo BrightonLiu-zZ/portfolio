@@ -1,85 +1,81 @@
+/* ---------- Base typography & global tweaks ---------- */
 body {
-  font: clamp(16px, 2vw, 18px) / 1.6 system-ui; /* grows a bit on large screens */
+  /* readable base size that grows slightly on large screens */
+  font: clamp(16px, 2vw, 18px) / 1.6 system-ui;
   margin: 0;
   padding: 0 12px; /* keeps content off the edges on phones */
 }
 
-/* Nav that wraps onto a new line on small screens */
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;        /* space between links */
-  margin-bottom: 1rem;
-}
-
-/* Images scale down with the screen, keep proportions */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;      /* removes little gaps under images */
-}
-
-/* ---- Step 1: comfortable reading width & centering ---- */
-
-/* Tweakable “settings” */
-:root {
-  --page-max: 70ch;   /* ~70 characters per line keeps text readable */
-  --page-pad: 1rem;   /* side padding on small screens */
-}
-
-/* The content wrapper */
-.page {
-  max-width: var(--page-max);  /* stop lines getting too long */
-  margin-inline: auto;         /* center on the page */
-  padding-inline: var(--page-pad);  /* breathing room on the sides */
-}
-
-/* Make media shrink to the container instead of overflowing */
+/* Media should never overflow the layout */
 img, video {
   max-width: 100%;
   height: auto;
-  display: block;   /* avoids odd gaps under images */
+  display: block; /* avoids little gaps under images */
 }
 
-/* ---- Step 2: Navigation bar ---- */
-
-/* A single accent color we can reuse */
+/* ---------- Step 1: comfortable reading width & centering ---------- */
+/* Site settings (tweak these if you like) */
 :root {
-  --accent: #3b82f6; /* change to any color you like */
+  --page-max: 70ch;   /* ~70 characters per line keeps text readable */
+  --page-pad: 1rem;   /* side padding on small screens */
+
+  /* Step 2.4: brand colors */
+  --color-accent: oklch(65% 50% 0);    /* pick any accent you like */
+  --color-border: oklch(80% 3% 200);   /* subtle gray for dividers */
 }
 
-/* 2.1 If you used a ul/li menu, make them "transparent" to styling.
-   If you DIDN'T use ul/li, these lines are harmless. */
-nav ul, nav li {
-  display: contents; /* keeps their children in the flow and drops bullets/margins */
+/* Use the accent for native controls (checkboxes/radios, etc.) */
+html {
+  accent-color: var(--color-accent);
 }
 
-/* 2.2 Turn the nav into a flexible row */
+/* Content wrapper: apply to the main content area on each page */
+.page {
+  max-width: var(--page-max);          /* stop lines getting too long */
+  margin-inline: auto;                 /* center the column */
+  padding-inline: var(--page-pad);     /* breathing room on small screens */
+}
+
+/* ---------- Step 2: Navigation bar (2.3 + 2.4) ---------- */
+
+/* If your nav uses <ul><li>, make them “transparent” to styling.
+   Harmless if you aren’t using lists. */
+nav ul,
+nav li {
+  display: contents; /* keeps <a> children but drops list bullets/margins */
+}
+
+/* The bar itself */
 nav {
   display: flex;
-  gap: .5rem;              /* space between items */
-  border-bottom: 2px solid #000; /* subtle rule under the bar */
-  margin-bottom: 1rem;     /* space before page content */
+  flex-wrap: wrap;                   /* wraps gracefully on narrow screens */
+  gap: .5rem;                        /* space between items */
+  margin-bottom: 1rem;               /* space before page content */
+  border-bottom: 1px solid var(--color-border); /* subtle divider line */
 }
 
-/* Make each link look like a menu tab */
+/* Each link looks like a menu tab */
 nav a {
-  flex: 1;                 /* share the row evenly */
-  text-align: center;
-  text-decoration: none;   /* remove default underline */
-  padding: .5rem .75rem;
-  color: inherit;          /* use page text color */
-  border-bottom: 2px solid transparent; /* for hover/active underline */
+  flex: 1;                           /* share the row evenly */
+  text-align: center;                /* center the text */
+  text-decoration: none;             /* remove underline */
+  color: inherit;                    /* use page text color */
+  padding: .5rem .75rem;             /* comfy click/touch area */
+  border-bottom: .2rem solid transparent; /* we reveal this on hover/active */
 }
 
-/* Hover state: light accent underline + soft background */
+/* Hover state: accent underline + very light accent tint */
 nav a:hover {
-  border-bottom-color: var(--accent);
-  background: rgba(59, 130, 246, 0.10); /* very light accent tint */
+  border-bottom-color: var(--color-accent);
+  /* light background with the same hue as the accent */
+  background: oklch(from var(--color-accent) 95% 5% h);
 }
 
-/* Current page: stronger underline and a bit bolder */
+/* Current page: thicker accent underline; reduce bottom padding
+   so the thicker border doesn’t make the tab look taller */
 nav a.current {
-  border-bottom: 3px solid var(--accent);
+  border-bottom-color: var(--color-accent);
+  border-bottom-width: .4rem;
+  padding-bottom: .3rem;
   font-weight: 600;
 }
