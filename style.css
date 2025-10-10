@@ -19,6 +19,8 @@ img {
   display: block;      /* removes little gaps under images */
 }
 
+/* ---- Step 1: comfortable reading width & centering ---- */
+
 /* Tweakable “settings” */
 :root {
   --page-max: 70ch;   /* ~70 characters per line keeps text readable */
@@ -37,4 +39,47 @@ img, video {
   max-width: 100%;
   height: auto;
   display: block;   /* avoids odd gaps under images */
+}
+
+/* ---- Step 2: Navigation bar ---- */
+
+/* A single accent color we can reuse */
+:root {
+  --accent: #3b82f6; /* change to any color you like */
+}
+
+/* 2.1 If you used a ul/li menu, make them "transparent" to styling.
+   If you DIDN'T use ul/li, these lines are harmless. */
+nav ul, nav li {
+  display: contents; /* keeps their children in the flow and drops bullets/margins */
+}
+
+/* 2.2 Turn the nav into a flexible row */
+nav {
+  display: flex;
+  gap: .5rem;              /* space between items */
+  border-bottom: 2px solid #000; /* subtle rule under the bar */
+  margin-bottom: 1rem;     /* space before page content */
+}
+
+/* Make each link look like a menu tab */
+nav a {
+  flex: 1;                 /* share the row evenly */
+  text-align: center;
+  text-decoration: none;   /* remove default underline */
+  padding: .5rem .75rem;
+  color: inherit;          /* use page text color */
+  border-bottom: 2px solid transparent; /* for hover/active underline */
+}
+
+/* Hover state: light accent underline + soft background */
+nav a:hover {
+  border-bottom-color: var(--accent);
+  background: rgba(59, 130, 246, 0.10); /* very light accent tint */
+}
+
+/* Current page: stronger underline and a bit bolder */
+nav a.current {
+  border-bottom: 3px solid var(--accent);
+  font-weight: 600;
 }
