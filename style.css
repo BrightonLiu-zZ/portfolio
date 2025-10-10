@@ -18,3 +18,23 @@ img {
   height: auto;
   display: block;      /* removes little gaps under images */
 }
+
+/* Tweakable “settings” */
+:root {
+  --page-max: 70ch;   /* ~70 characters per line keeps text readable */
+  --page-pad: 1rem;   /* side padding on small screens */
+}
+
+/* The content wrapper */
+.page {
+  max-width: var(--page-max);  /* stop lines getting too long */
+  margin-inline: auto;         /* center on the page */
+  padding-inline: var(--page-pad);  /* breathing room on the sides */
+}
+
+/* Make media shrink to the container instead of overflowing */
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;   /* avoids odd gaps under images */
+}
