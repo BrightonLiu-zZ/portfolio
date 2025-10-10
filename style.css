@@ -109,3 +109,59 @@ form button {
   justify-self: start;          /* change to 'end' if you prefer right-aligned */
   padding: .5rem .9rem;
 }
+
+/* ---------- Step 4: Projects page ---------- */
+
+/* 4.2 Responsive grid for the cards */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1rem;
+  grid-auto-rows: auto; /* creates row tracks used by subgrid below */
+}
+
+/* Each card becomes a mini grid we can align with subgrid */
+.projects > article {
+  display: grid;
+  align-content: start;
+  padding: .75rem;
+  border: 1px solid oklch(90% 2% 200);
+  border-radius: .5rem;
+  background: white;
+}
+
+/* Images scale to the card width */
+.projects img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 4.3 Align inner pieces across cards using subgrid
+   - Use the parent rows (subgrid)
+   - Make each card span three row tracks: (h2 / img / p) */
+.projects > article {
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+}
+
+/* Tighten headings so rows align cleanly */
+.projects h2 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* 4.4 Finishing touches: hierarchy & heading polish */
+h1 {
+  font-size: 400%;    /* clear contrast vs body text */
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-block: 1rem;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h2 { font-size: 150%; }
