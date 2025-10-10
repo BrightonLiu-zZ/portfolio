@@ -1,73 +1,92 @@
-<main>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brighton Liu – Profile</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
   <header>
     <h1>Brighton Liu</h1>
-    <nav>
-        <a href="../">Home</a>
-        <a href="../projects/">Projects</a>
-        <a href="../contact/">Contact</a>
-        <a href="../profile/">Profile</a>
+    <nav aria-label="Primary">
+      <a href="../">Home</a>
+      <a href="../projects/">Projects</a>
+      <a href="../contact/">Contact</a>
+      <a href="../profile/" class="active">Profile</a>
     </nav>
-      <main class="page">
-          <p>Astrophysics & Data Science student, Interested in ML</p>
-        </header>
+  </header>
 
-        <section aria-labelledby="edu">
-          <h2 id="edu">Education</h2>
-          <article>
-            <h3>UC San Diego – B.S. Astrophysics & Data Science</h3>
-            <p>
-              <time datetime="2025-07">July 2024</time> – <time datetime="2027-06">Jun 2027</time> (expected)
-            </p>
-          </article>
-        </section>
+  <!-- Single main region for the page -->
+  <main class="page">
+    <section aria-labelledby="summary">
+      <h2 id="summary">Summary</h2>
+      <p>Astrophysics & Data Science student at UCSD. Interested in ML for science and clear, human-friendly visualization.</p>
+    </section>
 
-        <section aria-labelledby="exp">
-          <h2 id="exp">Experience</h2>
+    <section aria-labelledby="edu">
+      <h2 id="edu">Education</h2>
+      <article>
+        <h3>UC San Diego — B.S. Astrophysics & Data Science</h3>
+        <p>
+          <time datetime="2024-09">Sep 2024</time> –
+          <time datetime="2027-06">Jun 2027</time> (expected)
+        </p>
+        <ul>
+          <li>Relevant: DSC 80 (Data Science), DSC 106 (Visualization), stats & ML foundations</li>
+        </ul>
+      </article>
+    </section>
 
-          <article>
-            <h3>Data Science Intern – Himiway (Part-time)</h3>
-            <p>
-              <time datetime="2025-09">Sep 2025</time> – <time datetime="2025-12">Dec 2025</time>
-            </p>
-            <ul>
-              <li>Built zipcode-level scoring and Tableau maps for store siting.</li>
-              <li>Cleaned data with SQL; modeled features in Python (XGBoost draft).</li>
-            </ul>
-          </article>
-        </section>
+    <section aria-labelledby="exp">
+      <h2 id="exp">Experience</h2>
+      <article>
+        <h3>Data Science Intern — Himiway</h3>
+        <p>
+          <time datetime="2025-09">Sep 2025</time> –
+          <time datetime="2025-12">Dec 2025</time>
+        </p>
+        <ul>
+          <li>Zip-code scoring for new stores; dashboards and maps for decisions</li>
+          <li>Data cleaning and feature work in SQL/Python</li>
+        </ul>
+      </article>
+    </section>
 
-        <section aria-labelledby="projects">
-          <h2 id="projects">Selected Projects</h2>
+    <section aria-labelledby="projects">
+      <h2 id="projects">Selected Projects</h2>
+      <article>
+        <h3>KataGo × LLM Assistant</h3>
+        <p>Pipeline to filter high-quality Go positions and train an LLM to suggest moves with short rationales.</p>
+        <ul>
+          <li>Data filtering w/ indicators + XGBoost; Kaggle training scripts</li>
+          <li><a href="https://github.com/YOUR_USERNAME/YOUR_REPO" target="_blank" rel="noopener">Repository</a></li>
+        </ul>
+      </article>
 
-          <article>
-            <h3>KataGo × LLM Assistant</h3>
-            <p>Python pipeline that filters high-quality Go positions and trains an LLM to explain moves.</p>
-            <ul>
-              <li>Data filtering with indicators + XGBoost; Kaggle training scripts.</li>
-            </ul>
-          </article>
+      <article>
+        <h3>LoL Match Analytics</h3>
+        <p>EDA + modeling to understand match outcomes and player patterns.</p>
+        <ul>
+          <li><a href="https://brightonliu-zz.github.io/league_of_legend_matches_analysis/" target="_blank" rel="noopener">Project site</a></li>
+        </ul>
+      </article>
+    </section>
 
-          <article>
-            <h3>LoL Match Analytics (DSC 80 Final)</h3>
-            <ul>
-              <li>EDA, feature engineering; model comparison with cross-validation.</li>
-            </ul>
-          </article>
-        </section>
+    <section aria-labelledby="skills">
+      <h2 id="skills">Skills</h2>
+      <ul>
+        <li>Python (NumPy, Pandas, scikit-learn), R, SQL</li>
+        <li>Visualization: Matplotlib, Plotly; Web: HTML/CSS</li>
+        <li>Stats/ML: PCA, regression, A/B testing, XGBoost</li>
+        <li>Tools: Git/GitHub, Jupyter, Conda</li>
+      </ul>
+    </section>
 
-        <section aria-labelledby="skills">
-          <h2 id="skills">Skills</h2>
-          <ul>
-            <li>Python (NumPy, Pandas, scikit-learn), R, SQL</li>
-            <li>Viz: Matplotlib, Plotly; Web basics: HTML/CSS</li>
-            <li>Stats/ML: PCA, regression, CV, A/B testing, XGBoost</li>
-            <li>Tools: Git/GitHub</li>
-          </ul>
-        </section>
-
-        <section aria-labelledby="contact">
-          <h2 id="contact">Contact</h2>
-          <p>Email: <a href="mailto:brl055@ucsd.edu">brl055@ucsd.edu</a></p>
-        </section>
-      </main>
-</main>
+    <section aria-labelledby="contact-info">
+      <h2 id="contact-info">Contact</h2>
+      <p>Email: <a href="mailto:you@ucsd.edu">you@ucsd.edu</a></p>
+    </section>
+  </main>
+</body>
+</html>
