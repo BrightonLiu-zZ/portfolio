@@ -13,69 +13,99 @@ img, video {
   display: block; /* avoids little gaps under images */
 }
 
-/* ---------- Step 1: comfortable reading width & centering ---------- */
-/* Site settings (tweak these if you like) */
+/* ---------- Site settings ---------- */
 :root {
-  --page-max: 70ch;   /* ~70 characters per line keeps text readable */
-  --page-pad: 1rem;   /* side padding on small screens */
+  --page-max: 70ch;          /* comfortable line length */
+  --page-pad: 1rem;          /* side padding on small screens */
 
-  /* Step 2.4: brand colors */
-  --color-accent: oklch(65% 50% 0);    /* pick any accent you like */
-  --color-border: oklch(80% 3% 200);   /* subtle gray for dividers */
+  /* Brand / accents (Step 2.4) */
+  --color-accent: oklch(65% 50% 0);   /* tweak to your taste */
+  --color-border: oklch(80% 3% 200);  /* subtle divider line */
 }
 
-/* Use the accent for native controls (checkboxes/radios, etc.) */
-html {
-  accent-color: var(--color-accent);
-}
+/* Native controls (checkboxes, etc.) take the accent */
+html { accent-color: var(--color-accent); }
 
-/* Content wrapper: apply to the main content area on each page */
+/* Content wrapper used on each page (Step 1) */
 .page {
-  max-width: var(--page-max);          /* stop lines getting too long */
-  margin-inline: auto;                 /* center the column */
-  padding-inline: var(--page-pad);     /* breathing room on small screens */
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--page-pad);
 }
 
-/* ---------- Step 2: Navigation bar (2.3 + 2.4) ---------- */
+/* ---------- Navigation bar (Step 2.3 + 2.4) ---------- */
 
-/* If your nav uses <ul><li>, make them “transparent” to styling.
-   Harmless if you aren’t using lists. */
-nav ul,
-nav li {
-  display: contents; /* keeps <a> children but drops list bullets/margins */
-}
+/* If nav uses <ul><li>, make them transparent to styling (harmless otherwise) */
+nav ul, nav li { display: contents; }
 
-/* The bar itself */
 nav {
   display: flex;
-  flex-wrap: wrap;                   /* wraps gracefully on narrow screens */
-  gap: .5rem;                        /* space between items */
-  margin-bottom: 1rem;               /* space before page content */
-  border-bottom: 1px solid var(--color-border); /* subtle divider line */
+  flex-wrap: wrap;                 /* wraps gracefully on narrow screens */
+  gap: .5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
-/* Each link looks like a menu tab */
 nav a {
-  flex: 1;                           /* share the row evenly */
-  text-align: center;                /* center the text */
-  text-decoration: none;             /* remove underline */
-  color: inherit;                    /* use page text color */
-  padding: .5rem .75rem;             /* comfy click/touch area */
-  border-bottom: .2rem solid transparent; /* we reveal this on hover/active */
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: .5rem .75rem;
+  border-bottom: .2rem solid transparent; /* revealed on hover/active */
 }
 
-/* Hover state: accent underline + very light accent tint */
 nav a:hover {
   border-bottom-color: var(--color-accent);
-  /* light background with the same hue as the accent */
-  background: oklch(from var(--color-accent) 95% 5% h);
+  background: oklch(from var(--color-accent) 95% 5% h); /* light accent tint */
 }
 
-/* Current page: thicker accent underline; reduce bottom padding
-   so the thicker border doesn’t make the tab look taller */
 nav a.current {
   border-bottom-color: var(--color-accent);
   border-bottom-width: .4rem;
-  padding-bottom: .3rem;
+  padding-bottom: .3rem;   /* so the thicker border doesn't increase row height */
   font-weight: 600;
+}
+
+/* ---------- Contact form (Step 3.1–3.3) ---------- */
+
+/* 3.1: make inputs/textarea/button use the page font */
+input, textarea, button {
+  font: inherit;
+}
+
+/* 3.3: Grid layout replaces the simple top-down layout */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;  /* labels left (auto), fields right (flex) */
+  column-gap: 1rem;
+  row-gap: .75rem;
+  align-items: center;              /* vertically align labels/fields */
+}
+
+/* Labels in the left column; align their text neatly */
+form label {
+  justify-self: end;   /* right-align labels against the gap */
+  margin: 0;           /* Grid handles spacing now */
+}
+
+/* Fields fill the right column */
+form input,
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem;
+}
+
+/* Make the message area taller + resizable (vertical) */
+form textarea {
+  min-block-size: 8rem;
+  resize: vertical;
+}
+
+/* Button spans both columns so it sits across the form */
+form button {
+  grid-column: 1 / -1;
+  justify-self: start;          /* change to 'end' if you prefer right-aligned */
+  padding: .5rem .9rem;
 }

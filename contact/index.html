@@ -3,39 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Brighton Liu - Contact</title>
+  <title>Brighton Liu – Contact</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <header>
     <nav aria-label="Primary">
-        <a href="../">Home</a>
-        <a href="../projects/">Projects</a>
-        <a href="../contact/" class="current">Contact</a>
-        <a href="../profile/">Profile</a>
+      <a href="../">Home</a>
+      <a href="../projects/">Projects</a>
+      <a href="../contact/" class="current">Contact</a>
+      <a href="../profile/">Profile</a>
     </nav>
   </header>
 
   <main class="page">
     <h1>Contact</h1>
+
+    <!-- Step 3-ready structure: labels and controls are separate siblings -->
     <form action="mailto:brl055@ucsd.edu" method="POST" enctype="text/plain">
-      <label>
-        Email:
-        <input name="email" type="email" placeholder="you@example.com" value="you@example.com">
-      </label>
-      <br>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email"
+             placeholder="you@example.com" value="you@example.com">
 
-      <label>
-        Subject:
-        <input name="subject" placeholder="Hello from my website" value="Hello from my website">
-      </label>
-      <br>
+      <label for="subject">Subject</label>
+      <input id="subject" name="subject"
+             placeholder="Hello from my website" value="Hello from my website">
 
-      <label>
-        Body:
-        <textarea name="body" rows="5" cols="40">Hi</textarea>
-      </label>
-      <br>
+      <label for="body">Body</label>
+      <textarea id="body" name="body" rows="5">Hi Brighton, I saw your website…</textarea>
 
       <button>Submit</button>
     </form>
