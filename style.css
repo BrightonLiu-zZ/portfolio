@@ -140,8 +140,10 @@ form button {
   padding: .75rem;
   border: 1px solid oklch(90% 2% 200);
   border-radius: .5rem;
-  background: white;
+- background: white;
++ background: canvas; /* system color: white in light mode, near-black in dark */
 }
+
 
 /* Images scale to the card width (optional; your cards may be text-only) */
 .projects img {
