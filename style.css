@@ -202,3 +202,17 @@ h1 {
 }
 
 h2 { font-size: 150%; }
+
+
+/* Step 4.3 — place the theme switch */
+label.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 80%;
+}
+
+/* Inherit body font for the <select> (add "select" to your existing rule) */
+input, textarea, button, select {
+  font: inherit;
+}

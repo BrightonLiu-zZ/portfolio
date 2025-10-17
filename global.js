@@ -97,3 +97,5 @@ select.addEventListener("input", function (event) {
   // Set inline CSS variable on <html>
   document.documentElement.style.setProperty("color-scheme", value);
 });
+
+
