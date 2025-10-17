@@ -54,16 +54,7 @@ for (const p of pages) {
 
 /* ===========================
    STEP 4.2: Add the switch UI
-   ===========================
-
-   We insert a <label class="color-scheme"> with a <select> inside it.
-   The <option> values are exactly what we will set on html{ color-scheme: ... }:
-   - "light dark" (Automatic: follow OS)
-   - "light"
-   - "dark"
-
-   We add this block at the *start* of <body>, so it shows up on every page.
-*/
+   =========================== */
 document.body.insertAdjacentHTML(
   "afterbegin",
   `
@@ -78,24 +69,36 @@ document.body.insertAdjacentHTML(
   `
 );
 
-/* NOTE:
-   This control doesn't do anything yet—that’s expected.
-   In the next step we’ll add the JS to listen for changes and set html{ color-scheme: ... }.
-*/
-
 /* ===========================
-   STEP 4.4: Make it work
+   STEP 4.4 + 4.5: Make it work and persist
    ===========================
-   Listen for changes on the <select>, then set the CSS property
-   on the root element (html) accordingly.
+   - setColorScheme(s) applies the scheme, updates the <select>,
+     and saves it in localStorage.
+   - On load, if a saved value exists, we apply it.
+   - On change, we save & apply the new value.
 */
 const select = document.querySelector(".color-scheme select");
 
-select.addEventListener("input", function (event) {
+function setColorScheme(scheme) {
+  // Apply to <html>
+  document.documentElement.style.setProperty("color-scheme", scheme);
+  // Keep the UI in sync
+  select.value = scheme;
+  // Persist for future visits
+  localStorage.colorScheme = scheme;
+}
+
+// 1) On load: read from localStorage (if present) and apply it
+if ("colorScheme" in localStorage) {
+  setColorScheme(localStorage.colorScheme);
+} else {
+  // No saved preference; keep the default "Automatic"
+  select.value = "light dark";
+}
+
+// 2) On change: save & apply
+select.addEventListener("input", (event) => {
   const value = event.target.value; // "light dark", "light", or "dark"
   console.log("color scheme changed to", value);
-  // Set inline CSS variable on <html>
-  document.documentElement.style.setProperty("color-scheme", value);
+  setColorScheme(value);
 });
-
-
