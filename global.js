@@ -1,61 +1,53 @@
 // /global.js
 console.log("IT’S ALIVE!");
 
-// Small helper: $$("selector") → real Array of elements
+// Helper: $$("selector") → real Array (not a NodeList)
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
 /* ============================================================
-   STEP 3.1: Automatic navigation menu
-   ------------------------------------------------------------
-   1) Define our pages as an ARRAY OF OBJECTS: { url, title }.
-   2) Create a <nav>, prepend it to <body>.
-   3) For each page, build the URL (respecting BASE_PATH), add <a>.
-   4) As we add each <a>, if it matches the current page, add 'current'.
+   STEP 3.1/3.2: Build nav, mark current link, open externals in new tab
    ============================================================ */
 
-// 1) Pages list (edit titles/urls to match your site)
+// 1) List your pages (internal and, if you want, any external links)
 const pages = [
   { url: "",          title: "Home"     },
   { url: "projects/", title: "Projects" },
   { url: "profile/",  title: "Profile"  },
   { url: "contact/",  title: "Contact"  },
+  // Example external (optional): { url: "https://github.com/yourname", title: "GitHub" },
 ];
 
-// 2) Figure out our BASE_PATH depending on where we’re running
-//    On localhost we use "/".
-//    On GitHub Pages, replace '/your-repo-name/' with YOUR repo name (with slashes).
-const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
-  ? "/"
-  : "/your-repo-name/";   // ← CHANGE THIS to your GH Pages repo path, e.g. "/portfolio/"
+// 2) Base path: localhost vs GitHub Pages
+const BASE_PATH =
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    ? "/"
+    : "/your-repo-name/"; // ← change to your actual GH Pages repo path, e.g. "/portfolio/"
 
-// 3) Create <nav> and put it at the very top of <body>
+// 3) Create <nav> and put it at the top of <body>
 const nav = document.createElement("nav");
 document.body.prepend(nav);
 
-// 4) Loop over pages, build link, insert it, and mark current
+// 4) Create each <a> as an element (Step 3.2) and append it
 for (let p of pages) {
+  // Build the URL: prefix relative paths with BASE_PATH
   let url = p.url;
-
-  // If URL is relative (doesn’t start with http), prefix with BASE_PATH
   url = !url.startsWith("http") ? BASE_PATH + url : url;
 
-  // Insert the link into <nav>
-  nav.insertAdjacentHTML("beforeend", `<a href="${url}">${p.title}</a>`);
+  // Create the link element (instead of inserting HTML strings)
+  const a = document.createElement("a");
+  a.href = url;
+  a.textContent = p.title;
 
-  // Grab the just-added <a> (it’s the last element we inserted)
-  const a = nav.lastElementChild;
+  // Highlight current page (use classList.toggle with a condition)
+  a.classList.toggle("current", a.host === location.host && a.pathname === location.pathname);
 
-  // If this link points to the page we’re on, add the 'current' class
-  if (a && a.host === location.host && a.pathname === location.pathname) {
-    a.classList.add("current");
+  // Open external links in a new tab (hosts that differ from the current site)
+  if (a.host !== location.host) {
+    a.target = "_blank";
+    // (Optional, good practice) a.rel = "noopener";
   }
-}
 
-/* ============================================================
-   NOTE:
-   We removed the Step 2 code that queried existing nav links and
-   added 'current' afterwards, because we’re now creating links
-   AND marking the current one during creation (as the guideline says).
-   ============================================================ */
+  nav.append(a);
+}
