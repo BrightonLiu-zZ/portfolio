@@ -69,7 +69,7 @@ nav a {
 /* STEP 4.1 (optional hover fix): blend accent with page bg so it works in dark mode */
 nav a:hover {
   border-bottom-color: var(--color-accent);
-  background: color-mix(in oklch, var(--color-accent), canvas 85%);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 /* Use the same adaptive border color variable for the current item underline */
