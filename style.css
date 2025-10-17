@@ -4,6 +4,10 @@ body {
   font: clamp(16px, 2vw, 18px) / 1.6 system-ui;
   margin: 0;
   padding: 0 12px; /* keeps content off the edges on phones */
+
+  /* STEP 4.1: use system colors so light/dark adapt automatically */
+  background: canvas;
+  color: canvastext;
 }
 
 /* Media should never overflow the layout */
@@ -20,11 +24,15 @@ img, video {
 
   /* Brand / accents (Step 2.4) */
   --color-accent: oklch(65% 50% 0);   /* tweak to your taste */
-  --color-border: oklch(80% 3% 200);  /* subtle divider line */
+  --color-border: oklch(80% 3% 200);  /* subtle divider line (legacy var) */
 }
 
-/* Native controls (checkboxes, etc.) take the accent */
-html { accent-color: var(--color-accent); }
+/* Native controls (checkboxes, etc.) take the accent
+   + STEP 4.1: declare support for both light & dark */
+html {
+  accent-color: var(--color-accent);
+  color-scheme: light dark; /* let the browser render dark or light */
+}
 
 /* Content wrapper used on each page (Step 1) */
 .page {
@@ -33,7 +41,7 @@ html { accent-color: var(--color-accent); }
   padding-inline: var(--page-pad);
 }
 
-/* ---------- Navigation bar (Step 2.3 + 2.4) ---------- */
+/* ---------- Navigation bar (Step 2.3 + 2.4 + Step 4.1 tweaks) ---------- */
 
 /* If nav uses <ul><li>, make them transparent to styling (harmless otherwise) */
 nav ul, nav li { display: contents; }
@@ -43,7 +51,10 @@ nav {
   flex-wrap: wrap;                 /* wraps gracefully on narrow screens */
   gap: .5rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
+
+  /* STEP 4.1: darker, semi-transparent border that works in dark mode */
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid var(--border-color);
 }
 
 nav a {
@@ -55,13 +66,15 @@ nav a {
   border-bottom: .2rem solid transparent; /* revealed on hover/active */
 }
 
+/* STEP 4.1 (optional hover fix): blend accent with page bg so it works in dark mode */
 nav a:hover {
   border-bottom-color: var(--color-accent);
-  background: oklch(from var(--color-accent) 95% 5% h); /* light accent tint */
+  background: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
+/* Use the same adaptive border color variable for the current item underline */
 nav a.current {
-  border-bottom-color: var(--color-accent);
+  border-bottom-color: var(--border-color);
   border-bottom-width: .4rem;
   padding-bottom: .3rem;   /* so the thicker border doesn't increase row height */
   font-weight: 600;
