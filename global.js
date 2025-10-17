@@ -82,3 +82,18 @@ document.body.insertAdjacentHTML(
    This control doesn't do anything yet—that’s expected.
    In the next step we’ll add the JS to listen for changes and set html{ color-scheme: ... }.
 */
+
+/* ===========================
+   STEP 4.4: Make it work
+   ===========================
+   Listen for changes on the <select>, then set the CSS property
+   on the root element (html) accordingly.
+*/
+const select = document.querySelector(".color-scheme select");
+
+select.addEventListener("input", function (event) {
+  const value = event.target.value; // "light dark", "light", or "dark"
+  console.log("color scheme changed to", value);
+  // Set inline CSS variable on <html>
+  document.documentElement.style.setProperty("color-scheme", value);
+});
