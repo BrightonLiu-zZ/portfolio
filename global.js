@@ -26,7 +26,7 @@ document.body.prepend(nav);
 const BASE_PATH =
   (location.hostname === "localhost" || location.hostname === "127.0.0.1")
     ? "/"
-    : "/YOUR-REPO-NAME/"; // <-- replace with your repo name, e.g. "/dsc106-portfolio/"
+    : "/portfolio/"; // <-- replace with your repo name, e.g. "/dsc106-portfolio/"
 
 // 4) Create each link as an element, set attributes, add to <nav>
 for (const p of pages) {
