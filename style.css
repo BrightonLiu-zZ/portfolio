@@ -218,3 +218,31 @@ label.color-scheme {
 input, textarea, button, select {
   font: inherit;
 }
+
+/* Step 3.5 — GitHub profile stats (Home) */
+#profile-stats dl {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* four equal columns */
+  column-gap: 2rem;                      /* space between columns */
+  row-gap: .25rem;                       /* small space between rows */
+  align-items: end;                      /* line up numbers nicely */
+}
+
+#profile-stats dt,
+#profile-stats dd {
+  margin: 0; /* remove default margins so the grid aligns tightly */
+}
+
+#profile-stats dt {
+  grid-row: 1;                 /* all labels on the first row */
+  text-transform: uppercase;   /* match the example’s look */
+  letter-spacing: .06em;
+  font-size: .75rem;
+  opacity: .7;                 /* softer label color */
+}
+
+#profile-stats dd {
+  grid-row: 2;                 /* all values on the second row */
+  font-weight: 600;
+  font-size: clamp(1.75rem, 6vw, 2.5rem); /* big, responsive numbers */
+}

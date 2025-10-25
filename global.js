@@ -102,3 +102,53 @@ select.addEventListener("input", (event) => {
   console.log("color scheme changed to", value);
   setColorScheme(value);
 });
+
+// Lab 4 · Step 1.2 — JSON loader helper
+export async function fetchJSON(url) {
+  try {
+    // 1) Fetch the JSON file from the given URL
+    const response = await fetch(url);
+
+    // 2) Inspect the response in DevTools (should show a Response object)
+    console.log(response);
+
+    // 3) Validate the response; if not OK, throw so we can handle it
+    if (!response.ok) {
+      throw new Error(`Failed to fetch projects: ${response.statusText}`);
+    }
+
+    // 4) Parse and return the JSON body
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+    // Re-throw so callers (later steps) can handle it if needed
+    throw error;
+  }
+}
+
+// Lab 4 · Step 1.4 — Reusable renderer for project cards
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+  // 1) Clear existing content to avoid duplicates
+  containerElement.innerHTML = '';
+
+  // 2) Render one <article> per project
+  for (const project of projects) {
+    const article = document.createElement('article');
+
+    // 3) Build the inner HTML for the article (title, optional image, description)
+    article.innerHTML = `
+      <${headingLevel}>${project.title ?? ''}</${headingLevel}>
+      ${project.image ? `<img src="${project.image}" alt="${project.title ?? ''}">` : ''}
+      <p>${project.description ?? ''}</p>
+    `;
+
+    // 4) Append the article to the container
+    containerElement.appendChild(article);
+  }
+}
+
+// Lab 4 · Step 3.2 — GitHub API helper
+export async function fetchGitHubData(username) {
+  return fetchJSON(`https://api.github.com/users/BrightonLiu-zZ`);
+}

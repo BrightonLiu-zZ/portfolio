@@ -11,62 +11,11 @@
   <header>
   </header>
   <main class="page">
-    <h1>Projects</h1>
+    <h1 class="projects-title">Projects</h1>
 
-    <div class="projects">
-      <!-- Breaking Barriers Hackathon -->
-      <article>
-        <h2>Breaking Barriers Hackathon (AWS × Deloitte × AT&amp;T)</h2>
-        <p class="project-summary">
-          Engineered features from simulated AT&amp;T location pings and built a two-trigger detector
-          (forecast residuals + radial “escape” XGBoost on SageMaker) tuned to reduce false positives;
-          shipped an end-to-end pipeline with S3/MapLibre animation. Finalist (Top 8/32).
-        </p>
-        <div class="project-links">
-          <!-- Add a link if you publish a write-up or repo -->
-          <!-- <a href="https://example.com/hackathon">Write-up</a> -->
-        </div>
-      </article>
-
-      <!-- League of Legends Match Analysis -->
-      <article>
-        <h2>League of Legends Match Analysis (DSC80)</h2>
-        <p class="project-summary">
-          Wrangled 100K+ matches, engineered tidy features, and compared logistic regression
-          (baseline + engineered) versus random forests with cross-validation to report insights
-          for gameplay strategy.
-        </p>
-        <div class="project-links">
-          <a href="https://brightonliu-zz.github.io/league_of_legend_matches_analysis/" target="_blank" rel="noopener">Project site</a>
-        </div>
-      </article>
-
-      <!-- KataGo × LLM Project -->
-      <article>
-        <h2>KataGo × LLM Project</h2>
-        <p class="project-summary">
-          Initiated and led a pipeline from raw SGF → JSONL and a JSONL → KataGo-18B analysis step
-          (top-k moves &amp; win-rates) for filtering and reward signal; co-authored training scripts to
-          fine-tune Qwen2.5-7B-Instruct via GRPO + LoRA.
-        </p>
-        <div class="project-links">
-          <!-- Add your repo link when public -->
-          <!-- <a href="https://github.com/yourusername/katago-llm" target="_blank" rel="noopener">GitHub</a> -->
-        </div>
-      </article>
-
-      <!-- PCA for Galaxy Spectra -->
-      <article>
-        <h2>PCA for Galaxy Spectra (Keck)</h2>
-        <p class="project-summary">
-          Preprocessed and applied PCA + regression to 2,323 galaxy spectra to derive proxies for
-          star-formation and ionization states; produced statistical analysis write-ups with R visualizations.
-        </p>
-        <div class="project-links">
-          <!-- Optional: add a paper or repo link -->
-        </div>
-      </article>
-    </div>
+    <div class="projects"></div>
   </main>
+<script src="../global.js" type="module"></script>
+<script src="projects.js" type="module"></script>
 </body>
 </html>
