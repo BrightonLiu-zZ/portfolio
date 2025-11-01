@@ -137,10 +137,16 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
     const article = document.createElement('article');
 
     // 3) Build the inner HTML for the article (title, optional image, description)
+
     article.innerHTML = `
       <${headingLevel}>${project.title ?? ''}</${headingLevel}>
       ${project.image ? `<img src="${project.image}" alt="${project.title ?? ''}">` : ''}
-      <p>${project.description ?? ''}</p>
+
+      <!-- Wrap description + year in the SAME block so they stack cleanly -->
+      <div class="project-summary">
+        <p>${project.description ?? ''}</p>
+        ${project.year ? `<p class="project-year"><em>c. ${project.year}</em></p>` : ''}
+      </div>
     `;
 
     // 4) Append the article to the container

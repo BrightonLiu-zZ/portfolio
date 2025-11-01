@@ -140,8 +140,7 @@ form button {
   padding: .75rem;
   border: 1px solid oklch(90% 2% 200);
   border-radius: .5rem;
-- background: white;
-+ background: canvas; /* system color: white in light mode, near-black in dark */
+  background: canvas; /* system color: white in light mode, near-black in dark */
 }
 
 
@@ -189,6 +188,49 @@ form button {
 .projects .project-links a:hover {
   background: oklch(from var(--color-accent) 95% 5% h);
 }
+
+/* Small, book-ish year line under each description */
+.projects .project-year {
+  margin: .35rem 0 0 0;
+  opacity: .8;
+  font-style: italic;                 /* matches the “c. 2024” look */
+  font-family: Baskerville, ui-serif, Georgia, "Times New Roman", serif;
+  font-variant-numeric: oldstyle-nums;/* nicer-looking numerals */
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  flex: 0 0 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+/* Step 5.1 — highlight hovered wedge (scope to this SVG only) */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+/* Smoothen the fade */
+#projects-pie-plot path {
+  transition: 300ms;
+}
+
+/* Step 5.2 — selected wedge + legend color override */
+.selected { 
+  /* pick any distinct color you like; oklch below matches the guide */
+  --color: oklch(60% 0.45 0) !important;
+}
+
+/* ensure selected SVG paths render with the current --color */
+.selected:is(path) { 
+  fill: var(--color);
+}
+
+/* make wedges feel clickable */
+#projects-pie-plot path { 
+  cursor: pointer; 
+}
+
 
 /* 4.4 Finishing touches: hierarchy & heading polish */
 h1 {
@@ -245,4 +287,66 @@ input, textarea, button, select {
   grid-row: 2;                 /* all values on the second row */
   font-weight: 600;
   font-size: clamp(1.75rem, 6vw, 2.5rem); /* big, responsive numbers */
+}
+
+/* Step 2.2: Legend container as a responsive grid */
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: .75rem;
+  border: 1px solid var(--border, #ddd);
+  padding: .5rem .75rem;
+  margin-block: 1rem 2rem;
+  border-radius: .5rem;
+}
+
+/* Each legend item: text + color swatch */
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;          /* smaller than the grid gap (Proximity) */
+  min-width: 9em;      /* matches the grid min width */
+}
+
+/* The tiny color square */
+.legend__item .swatch {
+  display: inline-block;   /* needed so width/height apply to span */
+  width: 0.9em;
+  height: 0.9em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  border-radius: 3px;      /* optional rounding; use 50% for circles */
+  border: 1px solid rgba(0,0,0,.1);
+}
+
+/* Make the number lighter */
+.legend__item em {
+  font-style: normal;
+  opacity: .7;
+}
+
+.pie-layout {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;   /* keep legend on the right */
+}
+
+.pie-layout .legend {
+  flex: 1;
+  margin-block: 0;
+  min-width: 0;        /* allow the flex item to expand in the row */
+  width: 100%;         /* stretch to the space it owns so the grid can lay out columns */
+}
+
+
+/* Projects page only: give the pie + legend enough room for 3 columns */
+.page--wide { --page-max: 100ch; }  /* ~50em; fits 20em pie + 3×9em legend + gaps */
+
+/* Step 4.1: search input spacing and width */
+.searchBar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .5rem .75rem;
+  margin-block: .5rem 1rem;
 }

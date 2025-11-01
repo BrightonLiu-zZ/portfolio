@@ -2,62 +2,74 @@
     {
         "title": "Breaking Barriers Hackathon (AWS × Deloitte × AT&T)",
         "image": "",
-        "description": "Engineered features from simulated AT&T location pings and built a two-trigger detector\n          (forecast residuals + radial “escape” XGBoost on SageMaker) tuned to reduce false positives;\n          shipped an end-to-end pipeline with S3/MapLibre animation. Finalist (Top 8/32)."
+        "description": "Engineered features from simulated AT&T location pings and built a two-trigger detector\n          (forecast residuals + radial “escape” XGBoost on SageMaker) tuned to reduce false positives;\n          shipped an end-to-end pipeline with S3/MapLibre animation. Finalist (Top 8/32).", 
+        "year": 2025
     },
     {
         "title": "League of Legends Match Analysis (DSC80)",
         "image": "",
-        "description": "Wrangled 100K+ matches, engineered tidy features, and compared logistic regression\n          (baseline + engineered) versus random forests with cross-validation to report insights\n          for gameplay strategy."
+        "description": "Wrangled 100K+ matches, engineered tidy features, and compared logistic regression\n          (baseline + engineered) versus random forests with cross-validation to report insights\n          for gameplay strategy.", 
+        "year": 2025
     },
     {
         "title": "KataGo × LLM Project",
         "image": "",
-        "description": "Initiated and led a pipeline from raw SGF → JSONL and a JSONL → KataGo-18B analysis step\n          (top-k moves & win-rates) for filtering and reward signal; co-authored training scripts to\n          fine-tune Qwen2.5-7B-Instruct via GRPO + LoRA."
+        "description": "Initiated and led a pipeline from raw SGF → JSONL and a JSONL → KataGo-18B analysis step\n          (top-k moves & win-rates) for filtering and reward signal; co-authored training scripts to\n          fine-tune Qwen2.5-7B-Instruct via GRPO + LoRA.", 
+        "year": 2025
     },
     {
         "title": "PCA for Galaxy Spectra (Keck)",
         "image": "",
-        "description": "Preprocessed and applied PCA + regression to 2,323 galaxy spectra to derive proxies for\n          star-formation and ionization states; produced statistical analysis write-ups with R visualizations."
+        "description": "Preprocessed and applied PCA + regression to 2,323 galaxy spectra to derive proxies for\n          star-formation and ionization states; produced statistical analysis write-ups with R visualizations.", 
+        "year": 2025
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2024
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2024
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2023
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2023
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2022
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2024
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2022
     },
     {
         "title": "Place Holder Project",
         "image": "",
-        "description": "Place Holder Description"
+        "description": "Place Holder Description",
+        "year": 2024
     }
 ]
 
