@@ -16,6 +16,7 @@ const pages = [
   { url: "projects/", title: "Projects" },
   { url: "profile/",  title: "Profile"  },
   { url: "contact/",  title: "Contact"  },
+  { url: "meta/",     title: "Meta"     },
 ];
 
 // 2) Create <nav> and put it at the top of <body>

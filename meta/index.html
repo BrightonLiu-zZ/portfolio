@@ -1,0 +1,35 @@
+<!-- meta/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meta – Codebase Stats</title>
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="../global.js"></script>
+</head>
+<body>
+  <main class="page">
+    <h1>Meta</h1>
+    <div id="stats"></div> <!-- NEW: placeholder the lab asks for -->
+    <h2>Commits by time of day</h2>
+    <div id="chart"></div>
+    <p id="selection-count">No commits selected</p>
+    <dl id="language-breakdown" class="stats"></dl>
+    <dl id="commit-tooltip" class="info tooltip">
+      <dt>Commit</dt>
+      <dd><a href="" id="commit-link" target="_blank" rel="noopener"></a></dd>
+
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+
+      <!-- You can add: Time, Author, Lines edited … later -->
+    </dl>
+
+    <p>
+      This page will show “meta” stats about my site’s code (lines of code, commits, etc.).
+    </p>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

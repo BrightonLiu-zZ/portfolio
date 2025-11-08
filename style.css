@@ -350,3 +350,124 @@ input, textarea, button, select {
   padding: .5rem .75rem;
   margin-block: .5rem 1rem;
 }
+
+
+/* Lab 6 — stats block */
+.stats {
+  display: grid;
+  /* Fill by columns so each (dt, dd) pair stacks vertically in one column */
+  grid-auto-flow: column;
+  grid-template-rows: auto auto;           /* row 1 = labels (dt), row 2 = values (dd) */
+  grid-auto-columns: minmax(120px, 1fr);    /* width per metric column */
+  column-gap: 2rem;                         /* space between columns */
+  align-items: end;
+  margin: 0;
+  padding: 0;
+}
+
+.stats dt {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin: 0;               /* keep dt/dd snug */
+}
+.stats dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* Lab 6 — faint horizontal gridlines */
+.gridlines line {
+  stroke: currentColor;
+  opacity: 0.15;      /* faint so they don't overpower the dots */
+}
+.gridlines path {
+  display: none;      /* hide the gridlines' axis baseline */
+}
+
+/* Tooltip content layout (reusable for any <dl> info blocks) */
+.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin: 1rem 0;
+}
+.info dt {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+.info dd { margin: 0; font-weight: 600; }
+
+/* Make the tooltip visible at the top-left for now */
+.tooltip {
+  position: fixed;
+  top: 20rem;  /* push it below the nav */
+  left: 16rem;
+}
+
+/* Smooth hover scaling for dots */
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+circle:hover { transform: scale(1.5); }
+
+/* Lab 6 — tooltip visuals (Step 3.2) */
+.tooltip {
+  /* already fixed at top/left from Step 3.1 */
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    0 2px 8px  rgba(0, 0, 0, 0.06);
+  backdrop-filter: saturate(120%) blur(6px); /* subtle frosted look */
+  -webkit-backdrop-filter: saturate(120%) blur(6px);
+  max-width: 28ch;         /* keep it compact */
+  pointer-events: none;    /* don’t steal hover from dots */
+  z-index: 10;             /* above the SVG */
+}
+
+.tooltip a {
+  word-break: break-all;   /* commit SHAs won’t overflow */
+  text-decoration: underline;
+}
+
+/* Step 3.3 — smooth show/hide for the tooltip */
+dl.info {
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Lab 6 — Step 5.3: style the brush selection rectangle */
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 (dash length + gap) */
+  }
+}
+
+.selection {
+  fill-opacity: 0.1;
+  stroke: black;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+/* Selected dots via brushing */
+circle.selected {
+  fill: #ff6b6b;
+}
