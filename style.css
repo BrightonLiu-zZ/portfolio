@@ -379,6 +379,83 @@ input, textarea, button, select {
   line-height: 1.1;
 }
 
+/* Lab 8 – Step 2.1: grid layout for the file list */
+#files {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+
+  > div {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+  }
+
+  dt {
+    grid-column: 1;
+  }
+
+  dd {
+    grid-column: 2;
+
+    /* Lab 8 Step 2.2: make dots line up horizontally and wrap */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    align-content: start;
+    gap: 0.15em;
+    padding-top: 0.6em;
+    margin-left: 0;
+  }
+
+}
+
+/* Lab 8 – Step 2.2 + 2.4: unit visualization dots for file lines */
+.loc {
+  display: flex;
+  width: 0.5em;
+  aspect-ratio: 1;
+  background: var(--color);  /* color comes from JS via --color */
+  border-radius: 50%;
+}
+
+
+#commit-time {
+  margin-left: auto;              /* push the date all the way to the right */
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+
+/* Lab 8 – Step 3.1: side-by-side scrollytelling layout */
+#scrolly-1 {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+
+  > * {
+    flex: 1;          /* story and plot each take half the width */
+  }
+}
+
+#scatter-story {
+  position: relative;
+}
+
+/* Make the plot column "sticky" so it stays in view while scrolling */
+#scatter-plot {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: auto;
+  height: 50vh;       /* IMPORTANT: sticky needs an explicit height */
+}
+
+/* Optional: give each step enough height so scrolling feels smooth */
+#scatter-story .step {
+  padding-bottom: 50vh;
+}
+
+
+
 /* Lab 6 — faint horizontal gridlines */
 .gridlines line {
   stroke: currentColor;
@@ -411,13 +488,21 @@ input, textarea, button, select {
   left: 16rem;
 }
 
-/* Smooth hover scaling for dots */
+/* Smooth hover scaling for dots + entry animation (Lab 8 Step 1.4) */
 circle {
   transition: 200ms;
   transform-origin: center;
   transform-box: fill-box;
+
+  /* When a new circle is created, start from radius 0 so it "pops" in */
+  @starting-style {
+    r: 0;
+  }
 }
-circle:hover { transform: scale(1.5); }
+
+circle:hover {
+  transform: scale(1.5);
+}
 
 /* Lab 6 — tooltip visuals (Step 3.2) */
 .tooltip {
